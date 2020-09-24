@@ -15,15 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Downloads\Pr1\codigo\igvInterfaz.cpp">
+    <ClCompile Include="igvInterfaz.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Downloads\Pr1\codigo\pr1.cpp">
+    <ClCompile Include="pr1.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\Downloads\Pr1\codigo\igvInterfaz.h">
+    <ClInclude Include="igvInterfaz.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
