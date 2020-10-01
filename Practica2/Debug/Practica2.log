@@ -1,0 +1,7 @@
+﻿  igvEscena3D.cpp
+C:\Users\Niskp\Downloads\Pr2a\codigo\igvEscena3D.cpp(129,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\Niskp\Downloads\Pr2a\codigo\igvEscena3D.cpp(131,21): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\Niskp\Downloads\Pr2a\codigo\igvEscena3D.cpp(133,22): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\Niskp\Downloads\Pr2a\codigo\igvEscena3D.cpp(136,26): warning C4244: 'argumento': conversión de 'int' a 'GLfloat'; posible pérdida de datos
+C:\Users\Niskp\Downloads\Pr2a\codigo\igvEscena3D.cpp(158,19): warning C4244: 'argumento': conversión de 'int' a 'GLfloat'; posible pérdida de datos
+  Practica2.vcxproj -> E:\Github\Graficas\Practica2\Debug\Practica2.exe
