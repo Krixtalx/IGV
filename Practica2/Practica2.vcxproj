@@ -18,6 +18,15 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="igvEscena3D.h" />
+    <ClInclude Include="igvInterfaz.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="igvEscena3D.cpp" />
+    <ClCompile Include="igvInterfaz.cpp" />
+    <ClCompile Include="pr2a.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -138,15 +147,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="C:\Users\Niskp\Downloads\Pr2a\codigo\igvEscena3D.cpp" />
-    <ClCompile Include="C:\Users\Niskp\Downloads\Pr2a\codigo\igvInterfaz.cpp" />
-    <ClCompile Include="C:\Users\Niskp\Downloads\Pr2a\codigo\pr2a.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="C:\Users\Niskp\Downloads\Pr2a\codigo\igvEscena3D.h" />
-    <ClInclude Include="C:\Users\Niskp\Downloads\Pr2a\codigo\igvInterfaz.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

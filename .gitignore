@@ -1,2 +1,7 @@
 .vs/
 Debug/
+*.log
+*.ilk
+*.exe
+*.obj
+*.db
