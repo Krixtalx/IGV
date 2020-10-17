@@ -15,33 +15,33 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\Google Drive\3er curso\1er cuatrimestre\Graficas\Practicas\Pr2b\codigo\igvCamara.h">
+    <ClInclude Include="igvCamara.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Google Drive\3er curso\1er cuatrimestre\Graficas\Practicas\Pr2b\codigo\igvEscena3D.h">
+    <ClInclude Include="igvEscena3D.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Google Drive\3er curso\1er cuatrimestre\Graficas\Practicas\Pr2b\codigo\igvInterfaz.h">
+    <ClInclude Include="igvInterfaz.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Google Drive\3er curso\1er cuatrimestre\Graficas\Practicas\Pr2b\codigo\igvPunto3D.h">
+    <ClInclude Include="igvPunto3D.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Google Drive\3er curso\1er cuatrimestre\Graficas\Practicas\Pr2b\codigo\igvCamara.cpp">
+    <ClCompile Include="igvCamara.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Google Drive\3er curso\1er cuatrimestre\Graficas\Practicas\Pr2b\codigo\igvEscena3D.cpp">
+    <ClCompile Include="igvEscena3D.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Google Drive\3er curso\1er cuatrimestre\Graficas\Practicas\Pr2b\codigo\igvInterfaz.cpp">
+    <ClCompile Include="igvInterfaz.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Google Drive\3er curso\1er cuatrimestre\Graficas\Practicas\Pr2b\codigo\igvPunto3D.cpp">
+    <ClCompile Include="igvPunto3D.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Google Drive\3er curso\1er cuatrimestre\Graficas\Practicas\Pr2b\codigo\pr2b.cpp">
+    <ClCompile Include="pr2b.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

@@ -28,6 +28,8 @@ protected:
 	// Valores de la vista panorámica
 	igvPunto3D p0, r, V;
 
+	bool vistas = false;
+
 
 public:
 	// Constructores por defecto y destructor

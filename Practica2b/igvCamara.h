@@ -45,6 +45,8 @@ public:
 
 	int vista = 3;
 
+	double VarZoom = 1.0;
+
 	// Metodos
 
 public:

@@ -64,7 +64,7 @@ void igvCamara::cambiarTipoCamara() {
 
 }
 
-void igvCamara::cambiarVista(int vista){
+void igvCamara::cambiarVista(int vista) {
 	std::cout << this->vista << std::endl;
 	if (vista == -1) {
 		this->vista = (this->vista + 1) % 4;
@@ -75,15 +75,15 @@ void igvCamara::cambiarVista(int vista){
 	switch (this->vista)
 	{
 	case 0: //Planta
-		P0 = igvPunto3D(0, 4, 0);
+		P0 = igvPunto3D(0, 5, 0);
 		V = igvPunto3D(1.0, 0, 0);
 		break;
 	case 1: //Alzado
-		P0 = igvPunto3D(4, 0, 0);
+		P0 = igvPunto3D(5, 0, 0);
 		V = igvPunto3D(0, 1.0, 0);
 		break;
 	case 2: //Perfil
-		P0 = igvPunto3D(0, 0, 4);
+		P0 = igvPunto3D(0, 0, 5);
 		V = igvPunto3D(0, 1.0, 0);
 		break;
 	default:
@@ -92,7 +92,7 @@ void igvCamara::cambiarVista(int vista){
 		break;
 	}
 	aplicar();
-	
+
 }
 
 void igvCamara::aplicar(void) {
@@ -101,13 +101,13 @@ void igvCamara::aplicar(void) {
 	glLoadIdentity();
 
 	if (tipo == IGV_PARALELA) {
-		glOrtho(xwmin, xwmax, ywmin, ywmax, znear, zfar);
+		glOrtho(xwmin * VarZoom, xwmax * VarZoom, ywmin * VarZoom, ywmax * VarZoom, znear, zfar);
 	}
 	if (tipo == IGV_FRUSTUM) {
-		glFrustum(xwmin, xwmax, ywmin, ywmax, znear, zfar);
+		glFrustum(xwmin * VarZoom, xwmax * VarZoom, ywmin * VarZoom, ywmax * VarZoom, znear, zfar);
 	}
 	if (tipo == IGV_PERSPECTIVA) {
-		gluPerspective(angulo, raspecto, znear, zfar);
+		gluPerspective(angulo * VarZoom, raspecto, znear, zfar);
 	}
 
 	glMatrixMode(GL_MODELVIEW);
@@ -116,5 +116,6 @@ void igvCamara::aplicar(void) {
 }
 
 void igvCamara::zoom(double factor) {
-
+	VarZoom -= factor;
+	aplicar();
 }

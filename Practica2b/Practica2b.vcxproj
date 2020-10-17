@@ -18,6 +18,19 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="igvCamara.h" />
+    <ClInclude Include="igvEscena3D.h" />
+    <ClInclude Include="igvInterfaz.h" />
+    <ClInclude Include="igvPunto3D.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="igvCamara.cpp" />
+    <ClCompile Include="igvEscena3D.cpp" />
+    <ClCompile Include="igvInterfaz.cpp" />
+    <ClCompile Include="igvPunto3D.cpp" />
+    <ClCompile Include="pr2b.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -138,19 +151,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\..\Google Drive\3er curso\1er cuatrimestre\Graficas\Practicas\Pr2b\codigo\igvCamara.h" />
-    <ClInclude Include="..\..\..\Google Drive\3er curso\1er cuatrimestre\Graficas\Practicas\Pr2b\codigo\igvEscena3D.h" />
-    <ClInclude Include="..\..\..\Google Drive\3er curso\1er cuatrimestre\Graficas\Practicas\Pr2b\codigo\igvInterfaz.h" />
-    <ClInclude Include="..\..\..\Google Drive\3er curso\1er cuatrimestre\Graficas\Practicas\Pr2b\codigo\igvPunto3D.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\Google Drive\3er curso\1er cuatrimestre\Graficas\Practicas\Pr2b\codigo\igvCamara.cpp" />
-    <ClCompile Include="..\..\..\Google Drive\3er curso\1er cuatrimestre\Graficas\Practicas\Pr2b\codigo\igvEscena3D.cpp" />
-    <ClCompile Include="..\..\..\Google Drive\3er curso\1er cuatrimestre\Graficas\Practicas\Pr2b\codigo\igvInterfaz.cpp" />
-    <ClCompile Include="..\..\..\Google Drive\3er curso\1er cuatrimestre\Graficas\Practicas\Pr2b\codigo\igvPunto3D.cpp" />
-    <ClCompile Include="..\..\..\Google Drive\3er curso\1er cuatrimestre\Graficas\Practicas\Pr2b\codigo\pr2b.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -75,19 +75,21 @@ void igvInterfaz::set_glutKeyboardFunc(unsigned char key, int x, int y) {
 		interfaz.camara.cambiarVista();
 		break;
 	case '+': // zoom in
-
+		interfaz.camara.zoom(0.05);
 		break;
 	case '-': // zoom out
-
+		interfaz.camara.zoom(-0.05);
 		break;
 	case 'n': // incrementar la distancia del plano cercano
-
+		interfaz.camara.znear += 0.2;
+		interfaz.camara.aplicar();
 		break;
 	case 'N': // decrementar la distancia del plano cercano
-
+		interfaz.camara.znear -= 0.2;
+		interfaz.camara.aplicar();
 		break;
 	case '4': // dividir la ventana  en cuatro vistas
-
+		interfaz.vistas = !interfaz.vistas;
 		break;
 	case 'e': // activa/desactiva la visualizacion de los ejes
 		interfaz.escena.set_ejes(interfaz.escena.get_ejes() ? false : true);
@@ -112,12 +114,26 @@ void igvInterfaz::set_glutReshapeFunc(int w, int h) {
 void igvInterfaz::set_glutDisplayFunc() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // borra la ventana y el z-buffer
 
-	// se establece el viewport
-	glViewport(0, 0, interfaz.get_ancho_ventana(), interfaz.get_alto_ventana());
-
-	//visualiza la escena
-	interfaz.escena.visualizar();
-
+	if (interfaz.vistas) {
+		// se establece el viewport
+		glViewport(0, interfaz.get_alto_ventana() / 2, interfaz.get_ancho_ventana() / 2, interfaz.get_alto_ventana() / 2);
+		//visualiza la escena
+		interfaz.escena.visualizar();
+		glViewport(0, 0, interfaz.get_ancho_ventana() / 2, interfaz.get_alto_ventana() / 2);
+		interfaz.camara.cambiarVista(0);
+		interfaz.escena.visualizar();
+		glViewport(interfaz.get_ancho_ventana() / 2, 0, interfaz.get_ancho_ventana() / 2, interfaz.get_alto_ventana() / 2);
+		interfaz.camara.cambiarVista(1);
+		interfaz.escena.visualizar();
+		glViewport(interfaz.get_ancho_ventana() / 2, interfaz.get_alto_ventana() / 2, interfaz.get_ancho_ventana() / 2, interfaz.get_alto_ventana() / 2);
+		interfaz.camara.cambiarVista(2);
+		interfaz.escena.visualizar();
+	}
+	else {
+		glViewport(0, 0, interfaz.get_ancho_ventana(), interfaz.get_alto_ventana());
+		//visualiza la escena
+		interfaz.escena.visualizar();
+	}
 	// refresca la ventana
 	glutSwapBuffers(); // se utiliza, en vez de glFlush(), para evitar el parpadeo
 }
