@@ -115,10 +115,7 @@ void igvInterfaz::set_glutDisplayFunc() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // borra la ventana y el z-buffer
 
 	if (interfaz.vistas) {
-		// se establece el viewport
-		glViewport(0, interfaz.get_alto_ventana() / 2, interfaz.get_ancho_ventana() / 2, interfaz.get_alto_ventana() / 2);
-		//visualiza la escena
-		interfaz.escena.visualizar();
+		
 		glViewport(0, 0, interfaz.get_ancho_ventana() / 2, interfaz.get_alto_ventana() / 2);
 		interfaz.camara.cambiarVista(0);
 		interfaz.escena.visualizar();
@@ -127,6 +124,9 @@ void igvInterfaz::set_glutDisplayFunc() {
 		interfaz.escena.visualizar();
 		glViewport(interfaz.get_ancho_ventana() / 2, interfaz.get_alto_ventana() / 2, interfaz.get_ancho_ventana() / 2, interfaz.get_alto_ventana() / 2);
 		interfaz.camara.cambiarVista(2);
+		interfaz.escena.visualizar();
+		glViewport(0, interfaz.get_alto_ventana() / 2, interfaz.get_ancho_ventana() / 2, interfaz.get_alto_ventana() / 2);
+		interfaz.camara.cambiarVista(3);
 		interfaz.escena.visualizar();
 	}
 	else {
