@@ -100,6 +100,11 @@ void igvCamara::aplicar(void) {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
+	if (VarZoom > 2.95)
+		VarZoom = 2.95;
+	if (VarZoom < 0.05)
+		VarZoom = 0.05;
+
 	if (tipo == IGV_PARALELA) {
 		glOrtho(xwmin * VarZoom, xwmax * VarZoom, ywmin * VarZoom, ywmax * VarZoom, znear, zfar);
 	}
@@ -107,7 +112,7 @@ void igvCamara::aplicar(void) {
 		glFrustum(xwmin * VarZoom, xwmax * VarZoom, ywmin * VarZoom, ywmax * VarZoom, znear, zfar);
 	}
 	if (tipo == IGV_PERSPECTIVA) {
-		gluPerspective(angulo * VarZoom, raspecto, znear, zfar);
+		gluPerspective(angulo*VarZoom, raspecto, znear, zfar);
 	}
 
 	glMatrixMode(GL_MODELVIEW);
