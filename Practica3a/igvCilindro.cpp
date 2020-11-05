@@ -8,7 +8,7 @@ igvCilindro::igvCilindro() :igvMallaTriangulos()
 {
 }
 
-igvCilindro::igvCilindro(float r, float a, int divU, int divV)
+igvCilindro::igvCilindro(float r, float a, int divU, int divV) //DivU -> Numero de espacios.  DivV -> Numero de zonas
 {
 	/* Apartado B: Construir la malla de triángulos para representar el cilindro */
 
@@ -35,20 +35,11 @@ igvCilindro::igvCilindro(float r, float a, int divU, int divV)
 			vertices[posVertice + 1] = a * j; //Eje y
 			vertices[posVertice + 2] = posZ; //Eje z
 
-			if (j == 0) {
-				normales[posVertice] = 0.0;
-				normales[posVertice + 1] = 0.0;
-				normales[posVertice + 2] = 1.0;
-			}if (j == divU) {
-				normales[posVertice] = 0.0;
-				normales[posVertice + 1] = 0.0;
-				normales[posVertice + 2] = -1.0;
-			}
-			else {
-				normales[posVertice] = posX;
-				normales[posVertice + 1] = a * j;
-				normales[posVertice + 2] = posZ;
-			}
+
+			normales[posVertice] = posX / r;
+			normales[posVertice + 1] = 0.0;
+			normales[posVertice + 2] = posZ / r;
+
 
 			std::cout << "Vertice " << posVertice / 3 << ": " << vertices[posVertice] << ", " << vertices[posVertice + 1] << ", " << vertices[posVertice + 2] << std::endl;
 
