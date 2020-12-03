@@ -192,7 +192,6 @@ void igvInterfaz::set_glutMotionFunc(GLint x, GLint y) {
 
 	// Apartado B: guardar la nueva posición del ratón 
 	interfaz.movX = x - interfaz.cursorX;
-	std::cout << interfaz.movX << std::endl;
 	interfaz.cursorX = x;
 
 	// Apartado B: renovar el contenido de la ventana de vision 
