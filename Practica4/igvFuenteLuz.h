@@ -18,7 +18,7 @@ class igvFuenteLuz {
 		// Atributos
 		unsigned int idLuz; // identificador de la luz (GL_LIGHT0 a GL_LIGHT7)
 
-    igvPunto3D posicion; // posición de la luz
+		igvPunto3D posicion; // posición de la luz
 
 		igvColor colorAmbiente; // color ambiental de la luz
 		igvColor colorDifuso; // color difuso de la luz

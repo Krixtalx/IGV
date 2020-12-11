@@ -61,23 +61,35 @@ void igvInterfaz::set_glutSpecialFunc(int key, int x, int y) {
 void igvInterfaz::set_glutKeyboardFunc(unsigned char key, int x, int y) {
 	switch (key) {
 		case 'd': // Apartado E: aumentar en 0.1 la componente R del coeficiente difuso del material
-
+			interfaz.escena.incKd(0.1);
 		break;
 		case 'D': // Apartado E: disminuir en 0.1 la componente R del coeficiente difuso del material
-
+			interfaz.escena.incKd(-0.1);
 		break;
 		case 's': // Apartado E: aumentar en 0.1 la componente R del coeficiente especular del material
-
+			interfaz.escena.incKs(0.1);
 		break;
 		case 'S': // Apartado E: disminuir en 0.1 la componente R del coeficiente especular del material
-
+			interfaz.escena.incKs(-0.1);
 		break;
 		case 'p': // Apartado E: aumentar en 10 el exponente de Phong del material
-
+			interfaz.escena.incNs(10);
 		break;
 		case 'P': // Apartado E: disminuir en 10 el exponente de Phong del material
-
+			interfaz.escena.incNs(-10);
 		break;
+		case 'x': // Apartado E: disminuir en 10 el exponente de Phong del material
+			interfaz.escena.incX(0.2);
+			break;
+		case 'X': // Apartado E: disminuir en 10 el exponente de Phong del material
+			interfaz.escena.incX(-0.2);
+			break;
+		case 'y': // Apartado E: disminuir en 10 el exponente de Phong del material
+			interfaz.escena.incY(0.2);
+			break;
+		case 'Y': // Apartado E: disminuir en 10 el exponente de Phong del material
+			interfaz.escena.incY(-0.2);
+			break;
 		case 'e': // activa/desactiva la visualizacion de los ejes
 			interfaz.escena.set_ejes(interfaz.escena.get_ejes()?false:true);
 	  break;
