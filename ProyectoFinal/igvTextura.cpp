@@ -27,7 +27,11 @@ igvTextura::igvTextura(std::string fichero) {
 		printf("Cargando %s: %dx%d %dbpp\n", &fichero[0],
 			imagen->w, imagen->h, imagen->format->BitsPerPixel);
 
-	  
+		GLint modo;
+		if (imagen->format->BitsPerPixel == 24)
+			modo = GL_RGB;
+		else
+			modo = GL_RGBA;
 		// Apartado G: Añadir aquí el código para cargar como textura OpenGL la imagen */
 	    //	- Generar el identificador de textura y asignarlo al atributo idTextura (glGenTextures)
 		glGenTextures(1, &idTextura);
@@ -35,7 +39,7 @@ igvTextura::igvTextura(std::string fichero) {
 		//	- Enlazar el identificador creado a GL_TEXTURE_2D (glBindTexture)
 		glBindTexture(GL_TEXTURE_2D, idTextura);
 		//  - Especificar la textura, asignádole como textura el array imagen (glTexImage2D)
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imagen->w, imagen->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, imagen->pixels);
+		glTexImage2D(GL_TEXTURE_2D, 0, modo, imagen->w, imagen->h, 0, modo, GL_UNSIGNED_BYTE, imagen->pixels);
 		//  - Modo de aplicación de la textura (glTexEnvf)
 		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 		//	- Parámetros de la textura: repetición y filtros (glTexParameteri)

@@ -11,7 +11,7 @@
 
 //==================== Constructor y destructor =======================
 
-igvEscena3D::igvEscena3D() {
+igvEscena3D::igvEscena3D(){
 	ejes = false;
 	matrizLaberinto = new int* [fil];
 	for (unsigned i = 0; i < fil; i++)
@@ -28,7 +28,10 @@ igvEscena3D::igvEscena3D() {
 	generarLaberinto();
 	crearLaberinto();
 
-	PlaySound(TEXT("avalanche.wav"), NULL, SND_ASYNC | SND_FILENAME | SND_LOOP);
+	if (terror)
+		PlaySound(TEXT("avalanche.wav"), NULL, SND_ASYNC | SND_FILENAME | SND_LOOP);
+	else
+		PlaySound(TEXT("newtown.wav"), NULL, SND_ASYNC | SND_FILENAME | SND_LOOP);
 }
 
 igvEscena3D::~igvEscena3D() {
@@ -151,10 +154,10 @@ bool igvEscena3D::factible(unsigned posFil, unsigned posCol)
 }
 
 //Metodo publico inicial
-void igvEscena3D::resolverLaberinto()
+void igvEscena3D::resolverLaberinto(unsigned posFil, unsigned posCol)
 {
 	bool encontrado = false;
-	resolverLaberinto(1, 1, encontrado);
+	resolverLaberinto(posFil, posCol, encontrado);
 
 	if (encontrado) {
 		for (unsigned i = 0; i < fil; i++)
@@ -165,6 +168,9 @@ void igvEscena3D::resolverLaberinto()
 					paredes.push_back(Pared({ (float)j + 0.5, 0.5, (float)i + 0.5 }, { 0,0,0 }, { 0,1,0,1.0 }));
 			}
 		}
+	}
+	else {
+		std::cout << "No se ha podido resolver el laberinto";
 	}
 	resuelto = true;
 	Pared::resuelto = true;
@@ -232,13 +238,17 @@ void pintar_ejes(void) {
 
 void igvEscena3D::visualizar(void) {
 	if (!texParedes)
-		texParedes = new igvTextura("128.png");
+		if (terror)
+			texParedes = new igvTextura("128.png");
+		else
+			texParedes = new igvTextura("128Minecraft.jpg");
+
 	// crear el modelo
 	glPushMatrix(); // guarda la matriz de modelado
 
 	  // se pintan los ejes
 	if (ejes) pintar_ejes();
-	
+
 	for (Pared pared : paredes)
 	{
 		pared.dibujar();
@@ -252,9 +262,9 @@ void igvEscena3D::comprobarColision(igvPunto3D current, igvPunto3D& target)
 	int posX, posZ;
 	posX = target[X] / Pared::tam;
 	posZ = target[Z] / Pared::tam;
-	
+
 	//std::cout << "PosX: " << posX << " PosZ: " << posZ << std::endl;
-	if (posX<0 || posZ<0 || matrizLaberinto[posZ][posX] == 1)
+	if (posX >= fil || posZ >= col || matrizLaberinto[posZ][posX] == 1)
 	{
 		target = current;
 	}

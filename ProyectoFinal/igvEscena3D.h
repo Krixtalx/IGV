@@ -19,8 +19,9 @@ protected:
 	igvTextura* texParedes = 0;
 	int** matrizLaberinto;
 	const unsigned col = 20, fil = 20;
-	const int semilla = 15;
+	const int semilla = 1572;
 	bool resuelto = false;
+	bool terror = false;
 
 	void generarLaberinto();
 	void crearLaberinto();
@@ -40,7 +41,7 @@ public:
 	const unsigned getFil();
 	bool get_ejes() { return ejes; };
 	void set_ejes(bool _ejes) { ejes = _ejes; };
-	void resolverLaberinto();
+	void resolverLaberinto(unsigned posFil, unsigned posCol);
 	void comprobarColision(igvPunto3D current, igvPunto3D& target);
 };
 

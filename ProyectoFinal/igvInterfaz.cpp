@@ -30,7 +30,7 @@ void igvInterfaz::crear_mundo(void) {
 	//parámetros de la perspectiva
 	interfaz.camara.angulo = 120.0;
 	interfaz.camara.raspecto = 1.0;
-	interfaz.luz = igvFuenteLuz(GL_LIGHT1, p0, { 0,0,0,1.0 }, { 1.0, 1.0, 1.0, 1.0 }, { 1.0, 1.0, 1.0, 1.0 }, 1.0, 0, 0, r, 40, 2);
+	interfaz.luz = igvFuenteLuz(GL_LIGHT1, p0, { 0.1,0.1,0.1,1.0 }, { 1.0, 1.0, 1.0, 1.0 }, { 1.0, 1.0, 1.0, 1.0 }, 1.0, 0, 0, r, 180, 2);
 	interfaz.luz.aplicar();
 }
 
@@ -66,8 +66,6 @@ void igvInterfaz::inicia_bucle_visualizacion() {
 
 void igvInterfaz::set_glutKeyboardFunc(unsigned char key, int x, int y) {
 
-	/* IMPORTANTE: en la implementación de este método hay que cambiar convenientemente el estado
-	   de los objetos de la aplicación, pero no hacer llamadas directas a funciones de OpenGL */
 	float speed = 0.002f * interfaz.deltaTime;
 
 	//std::cout << "PosCam: " << interfaz.camara.getPos()[0] << ", " << interfaz.camara.getPos()[1] << ", " << interfaz.camara.getPos()[2] << std::endl;
@@ -104,23 +102,12 @@ void igvInterfaz::set_glutKeyboardFunc(unsigned char key, int x, int y) {
 		interfaz.camara.cambiarTipoCamara();
 		break;
 	case 'r':
+		target = interfaz.camara.getPos();
+		interfaz.escena.resolverLaberinto(target[Z]/Pared::tam, target[X] / Pared::tam);
 		interfaz.camara.setPosPlanta({ (float)interfaz.escena.getFil() * 10 / 2, 20, (float)interfaz.escena.getCol() * 10 / 2 });
 		interfaz.camara.cambiarVista(0);
-		interfaz.escena.resolverLaberinto();
 		interfaz.luz.apagar();
 		interfaz.luz.aplicar();
-		break;
-	case 'v': // cambia la posición de la cámara para mostrar las vistas planta, perfil, alzado o perspectiva
-		interfaz.camara.cambiarVista();
-		break;
-	case '+': // zoom in
-		interfaz.camara.zoom(0.05);
-		break;
-	case '-': // zoom out
-		interfaz.camara.zoom(-0.05);
-		break;
-	case '4': // dividir la ventana  en cuatro vistas
-		interfaz.vistas = !interfaz.vistas;
 		break;
 	case 'e': // activa/desactiva la visualizacion de los ejes
 		interfaz.escena.set_ejes(interfaz.escena.get_ejes() ? false : true);

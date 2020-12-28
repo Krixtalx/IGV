@@ -34,7 +34,7 @@ void Pared::dibujar()
 void Pared::crearQuad()
 {
 	float ini = -Pared::tam / 2;
-	int div = 5;
+	int div = 10;
 	float inc = (float)Pared::tam / div;
 	float inc_tex = (float)1 / div;
 
