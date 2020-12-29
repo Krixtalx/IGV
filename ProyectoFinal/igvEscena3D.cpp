@@ -6,12 +6,13 @@
 #include "Pared.h"
 #include <stack>
 #include "Mmsystem.h"
+#include "igvFuenteLuz.h"
 
 
 
 //==================== Constructor y destructor =======================
 
-igvEscena3D::igvEscena3D(){
+igvEscena3D::igvEscena3D() {
 	ejes = false;
 	matrizLaberinto = new int* [fil];
 	for (unsigned i = 0; i < fil; i++)
@@ -27,6 +28,12 @@ igvEscena3D::igvEscena3D(){
 	matrizLaberinto[fil - 2][col - 1] = 3;
 	generarLaberinto();
 	crearLaberinto();
+	posXPilar = rand() % fil;
+	posYPilar = rand() % col;
+	while (matrizLaberinto[posXPilar][posYPilar] != 0) {
+		posXPilar = rand() % fil;
+		posYPilar = rand() % col;
+	}
 
 	if (terror)
 		PlaySound(TEXT("avalanche.wav"), NULL, SND_ASYNC | SND_FILENAME | SND_LOOP);
@@ -109,8 +116,13 @@ void igvEscena3D::generarLaberinto()
 		matrizLaberinto[posFil][posCol] = 0;
 		posFil--;
 	}
+	matrizLaberinto[1][1] = 0;
 }
 
+
+//===========================================================================================
+
+//Añade las paredes necesarias en base al valor de la matriz en la posicion dada (Ver significado de cada valor unas lineas mas arriba)
 void igvEscena3D::crearLaberinto()
 {
 	for (unsigned i = 0; i < fil; i++)
@@ -127,10 +139,14 @@ void igvEscena3D::crearLaberinto()
 				paredes.push_back(Pared({ (float)j + 0.5, -0.5, (float)i + 0.5 }, { 0,0,0 }, { 0,0,0,1.0 }));
 		}
 	}
+	paredes.push_back(Pared({ col - 0.5, 0.5, fil - 1.5 }, { 0,0,0 }, { 1,0,0,1.0 }));
 	std::cout << "NumParedes: " << paredes.size() << std::endl;
 }
 
 
+//===========================================================================================
+
+//Comprueba si la posicion pasada como parametro es o no factible para quitarle el muro
 bool igvEscena3D::factible(unsigned posFil, unsigned posCol)
 {
 	if (posFil < 1 || posFil >= (fil - 1) || posCol < 1 || posCol >= (col - 1))
@@ -153,7 +169,9 @@ bool igvEscena3D::factible(unsigned posFil, unsigned posCol)
 
 }
 
-//Metodo publico inicial
+//===========================================================================================
+
+//Metodo publico de la resolucion del laberinto
 void igvEscena3D::resolverLaberinto(unsigned posFil, unsigned posCol)
 {
 	bool encontrado = false;
@@ -178,7 +196,9 @@ void igvEscena3D::resolverLaberinto(unsigned posFil, unsigned posCol)
 	glutSetCursor(GLUT_CURSOR_CROSSHAIR);
 }
 
-//Lazo recursivo
+//===========================================================================================
+
+//Lazo recursivo de la resolución
 void igvEscena3D::resolverLaberinto(unsigned posFil, unsigned posCol, bool& encontrado)
 {
 	if (matrizLaberinto[posFil][posCol] == 3)
@@ -198,7 +218,48 @@ void igvEscena3D::resolverLaberinto(unsigned posFil, unsigned posCol, bool& enco
 	}
 }
 
+//===========================================================================================
 
+//Crea el pilar necesario para poder salir
+void igvEscena3D::crearPilar()
+{
+	if (puertaAbierta) {
+		igvPunto3D luz0(Pared::tam * (posXPilar + 0.5), 5, Pared::tam * (posYPilar + 0.5)); // luz puntual  
+		igvFuenteLuz luz(GL_LIGHT1, luz0, { 1,1,1,1.0 }, { 1.0, 1.0, 1.0, 1.0 }, { 1.0, 1.0, 1.0, 1.0 }, 1.0, 0, 0);
+		luz.aplicar();
+	}
+
+	glPushMatrix();
+	glTranslatef(Pared::tam * (posXPilar + 0.5), 0.6, Pared::tam * (posYPilar + 0.5));
+	glRotatef(-90, 1, 0, 0);
+	glutSolidCone(1.5, 2, 10, 10);
+	glPopMatrix();
+
+	glPushMatrix();
+
+	float aux[3];
+	if (!puertaAbierta) {
+		aux[0] = 0.9;
+		aux[1] = 0.9;
+		aux[2] = 0.9;
+	}
+	else {
+		aux[0] = 0;
+		aux[1] = 0;
+		aux[2] = 0;
+	}
+	glMaterialfv(GL_FRONT, GL_EMISSION, aux);
+	glColor3fv(aux);
+	glTranslatef(Pared::tam * (posXPilar + 0.5), 3, Pared::tam * (posYPilar + 0.5));
+	glutSolidSphere(0.4, 10, 10);
+	glPopMatrix();
+	aux[2] = 1;
+	glColor3fv(aux);
+}
+
+//===========================================================================================
+
+//Muestra la matriz del laberinto por consola
 void igvEscena3D::mostrarLaberinto()
 {
 	for (unsigned i = 0; i < fil; i++)
@@ -211,7 +272,10 @@ void igvEscena3D::mostrarLaberinto()
 	}
 }
 
-//===========================================================================================
+
+//==================== Metodos generales =======================
+
+
 void pintar_ejes(void) {
 	GLfloat rojo[] = { 1,0,0,1.0 };
 	GLfloat verde[] = { 0,1,0,1.0 };
@@ -236,12 +300,17 @@ void pintar_ejes(void) {
 	glEnd();
 }
 
+//===========================================================================================
+
+//Se encarga de mandar a renderizar todo lo que pertenece a la escena (Paredes, el pilar, los ejes...)
 void igvEscena3D::visualizar(void) {
+	crearPilar();
+
 	if (!texParedes)
 		if (terror)
 			texParedes = new igvTextura("128.png");
 		else
-			texParedes = new igvTextura("128Minecraft.jpg");
+			texParedes = new igvTextura("128Minecraft.png");
 
 	// crear el modelo
 	glPushMatrix(); // guarda la matriz de modelado
@@ -255,19 +324,39 @@ void igvEscena3D::visualizar(void) {
 	}
 
 	glPopMatrix(); // restaura la matriz de modelado
+
 }
 
+//===========================================================================================
+
+//Funcion encargada de comprobar si la posicion a la que queremos ir es valida o no (No es valida si hay un muro)
 void igvEscena3D::comprobarColision(igvPunto3D current, igvPunto3D& target)
 {
 	int posX, posZ;
 	posX = target[X] / Pared::tam;
 	posZ = target[Z] / Pared::tam;
 
-	//std::cout << "PosX: " << posX << " PosZ: " << posZ << std::endl;
-	if (posX >= fil || posZ >= col || matrizLaberinto[posZ][posX] == 1)
+	if (matrizLaberinto[posZ][posX] == 1)
 	{
 		target = current;
 	}
+	if (matrizLaberinto[posZ][posX] == 3 && !puertaAbierta)
+	{
+		target = current;
+	}
+	if (matrizLaberinto[posZ][posX] == 3 && puertaAbierta)
+	{
+		std::cout << "Has ganado" << std::endl;
+		target = { Pared::tam*(col - 0.5), 3, Pared::tam * (fil - 1.5) };
+	}
+}
+
+//===========================================================================================
+
+void igvEscena3D::abrirPuerta()
+{
+	puertaAbierta = true;
+	paredes.pop_back();
 }
 
 

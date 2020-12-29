@@ -17,6 +17,12 @@
 
 using namespace std;
 
+
+typedef enum {
+	IGV_VISUALIZAR,
+	IGV_SELECCIONAR,
+} modoInterfaz;
+
 class igvInterfaz {
 protected:
 	// Atributos
@@ -27,16 +33,21 @@ protected:
 	igvCamara camara; // cámara que se utiliza para visualizar la escena
 	igvFuenteLuz luz;
 
+	modoInterfaz modo; // IGV_VISUALIZAR: en la ventana se va a visualizar de manera normal la escena, 
+					   // IGV_SELECCIONAR: se ha pulsado sobre la ventana de visualización, la escena se debe
+					   // visualizar en modo selección
+
 	bool vistas = false;
 
-	int cursorX = 450;
-	int cursorY = 450;
+	int cursorX = ancho_ventana/2;
+	int cursorY = alto_ventana/2;
 	int movX = 0;
 	int movY = 0;
 	float yaw = 0, pitch = 0;
-	float deltaTime = 0.0f;
+	float deltaTime = 0.0f; //Variable que nos dice cuanto hemos tardado en renderizar el frame. Sirve para dar fluidez a las rotaciones y movimientos de camara.
 	float lastFrame = 0.0f;
 	bool primero = true;
+	bool boton_retenido;
 
 public:
 	// Constructores por defecto y destructor
@@ -49,6 +60,7 @@ public:
 	static void set_glutReshapeFunc(int w, int h); // método que define la camara de vision y el viewport
 												   // se llama automáticamente cuano se camba el tamaño de la ventana
 	static void set_glutDisplayFunc(); // método para visualizar la escena
+	static void set_glutMouseFunc(GLint boton, GLint estado, GLint x, GLint y);// control de pulsacion del raton
 	static void set_glutMotionFunc(GLint x, GLint y);
 	static void set_glutTimerFunc(int value);
 

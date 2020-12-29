@@ -13,6 +13,7 @@ Pared::Pared(igvPunto3D posicion, igvPunto3D rotacion, igvColor color) : posicio
 {
 }
 
+//Funcion encargada de dibujar la pared
 void Pared::dibujar()
 {
 	glPushMatrix();
@@ -31,6 +32,9 @@ void Pared::dibujar()
 	glPopMatrix(); //Restauramos la matriz de modelado guardada sin el escalado
 }
 
+//====================================================================================================================
+
+//Funcion encargada de crear el quad con la textura. Es usada por la funcion dibujar
 void Pared::crearQuad()
 {
 	float ini = -Pared::tam / 2;

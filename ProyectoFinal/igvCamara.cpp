@@ -87,7 +87,6 @@ void igvCamara::cambiarVista(int vista) {
 	{
 	case 0: //Planta
 		P0 = P0Planta;
-		//r = P0;
 		r[0] = 0;
 		r[1] = -1;
 		r[2] = 0;

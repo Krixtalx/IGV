@@ -18,16 +18,21 @@ protected:
 	std::vector<Pared> paredes;
 	igvTextura* texParedes = 0;
 	int** matrizLaberinto;
-	const unsigned col = 20, fil = 20;
-	const int semilla = 1572;
+	const unsigned col = 15, fil = 15;
+	const int semilla = 15;
+	bool puertaAbierta = false;
+	bool victoria = false;
 	bool resuelto = false;
-	bool terror = false;
+	bool terror = true;
+	int posXPilar = 0;
+	int posYPilar = 0;
 
 	void generarLaberinto();
 	void crearLaberinto();
 	void mostrarLaberinto();
 	bool factible(unsigned posFil, unsigned posCol);
 	void resolverLaberinto(unsigned posFil, unsigned posCol, bool& encontrado);
+	void crearPilar();
 
 public:
 	// Constructores por defecto y destructor
@@ -43,6 +48,7 @@ public:
 	void set_ejes(bool _ejes) { ejes = _ejes; };
 	void resolverLaberinto(unsigned posFil, unsigned posCol);
 	void comprobarColision(igvPunto3D current, igvPunto3D& target);
+	void abrirPuerta();
 };
 
 #endif
