@@ -23,6 +23,7 @@ void Pared::dibujar()
 	}
 	else
 		glMaterialfv(GL_FRONT, GL_EMISSION, color.cloneToFloatArray());
+
 	glTranslatef(posicion[X] * tam, posicion[Y] * tam, posicion[Z] * tam); //Aplicamos la translacion
 	glRotatef(rotacion[X], 1, 0, 0); //Aplicamos las rotaciones
 	glRotatef(rotacion[Y], 0, 1, 0);

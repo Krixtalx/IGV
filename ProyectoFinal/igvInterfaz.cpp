@@ -155,10 +155,7 @@ void igvInterfaz::set_glutDisplayFunc() {
 	if (interfaz.modo == IGV_SELECCIONAR) {
 		glDisable(GL_LIGHTING); // desactiva la iluminacion de la escena
 		glDisable(GL_DITHER);
-
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glDisable(GL_TEXTURE_2D);
-		glDisable(GL_CULL_FACE);
 
 		interfaz.escena.visualizar();
 
@@ -257,9 +254,6 @@ void igvInterfaz::set_glutMouseFunc(GLint boton, GLint estado, GLint x, GLint y)
 		// Apartado A: guardar que el boton se ha presionado o se ha soltado, si se ha pulsado hay que
 		// pasar a modo IGV_SELECCIONAR
 		interfaz.modo = IGV_SELECCIONAR;
-		// Apartado A: guardar el pixel pulsado
-		interfaz.cursorX = x;
-		interfaz.cursorY = y;
 
 		// Apartado A: renovar el contenido de la ventana de vision
 		glutPostRedisplay();

@@ -18,12 +18,17 @@ protected:
 	std::vector<Pared> paredes;
 	igvTextura* texParedes = 0;
 	int** matrizLaberinto;
+
+//========Valores configurables=========
 	const unsigned col = 15, fil = 15;
 	const int semilla = 15;
+	bool terror = true;
+//======================================
+
 	bool puertaAbierta = false;
 	bool victoria = false;
 	bool resuelto = false;
-	bool terror = true;
+	
 	int posXPilar = 0;
 	int posYPilar = 0;
 

@@ -36,13 +36,7 @@
     <ClInclude Include="igvMaterial.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Nodo.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Pared.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="personaje.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="igvTextura.h">
@@ -74,13 +68,7 @@
     <ClCompile Include="igvMaterial.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Nodo.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="Pared.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="personaje.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="igvTextura.cpp">

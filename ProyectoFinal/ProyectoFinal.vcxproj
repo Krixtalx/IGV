@@ -150,9 +150,7 @@
     <ClInclude Include="igvMaterial.h" />
     <ClInclude Include="igvPunto3D.h" />
     <ClInclude Include="igvTextura.h" />
-    <ClInclude Include="Nodo.h" />
     <ClInclude Include="Pared.h" />
-    <ClInclude Include="personaje.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="igvCamara.cpp" />
@@ -163,9 +161,7 @@
     <ClCompile Include="igvMaterial.cpp" />
     <ClCompile Include="igvPunto3D.cpp" />
     <ClCompile Include="igvTextura.cpp" />
-    <ClCompile Include="Nodo.cpp" />
     <ClCompile Include="Pared.cpp" />
-    <ClCompile Include="personaje.cpp" />
     <ClCompile Include="prFinal.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
