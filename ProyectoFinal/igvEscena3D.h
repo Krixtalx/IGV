@@ -10,6 +10,8 @@
 #endif
 #include <vector>
 #include "Pared.h"
+#include "Nodo.h"
+#include <map>
 
 class igvEscena3D {
 protected:
@@ -21,8 +23,16 @@ protected:
 
 //========Valores configurables=========
 	const unsigned col = 15, fil = 15;
-	const int semilla = 15;
+	const int semilla = 11;
 	bool terror = true;
+//======================================
+
+//========Valores grafo de escena=======
+	Nodo* raiz;
+	Nodo* nodoSeleccionado;
+	igvPunto3D rotacionSeleccionado;
+	igvPunto3D posicionSeleccionado;
+	std::map<Nodo*, int*> restricciones;
 //======================================
 
 	bool puertaAbierta = false;
@@ -47,6 +57,8 @@ public:
 	// Métodos
 	// método con las llamadas OpenGL para visualizar la escena
 	void visualizar();
+
+	bool isPuertaAbierta();
 	const unsigned getCol();
 	const unsigned getFil();
 	bool get_ejes() { return ejes; };
@@ -54,6 +66,14 @@ public:
 	void resolverLaberinto(unsigned posFil, unsigned posCol);
 	void comprobarColision(igvPunto3D current, igvPunto3D& target);
 	void abrirPuerta();
+
+	void dibujarGrafoEscena();
+	void setSeleccionado(std::string nombre);
+	void modificarAnguloSeleccionado(igvPunto3D rotacion);
+	void modificarPosicionSeleccionado(igvPunto3D posicion);
+	void resetearModelo();
+	std::string getNombreNodoSel();
+	igvPunto3D checkRestricciones(igvPunto3D rotacion);
 };
 
 #endif

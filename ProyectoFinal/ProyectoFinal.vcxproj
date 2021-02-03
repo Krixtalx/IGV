@@ -150,6 +150,7 @@
     <ClInclude Include="igvMaterial.h" />
     <ClInclude Include="igvPunto3D.h" />
     <ClInclude Include="igvTextura.h" />
+    <ClInclude Include="Nodo.h" />
     <ClInclude Include="Pared.h" />
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +162,7 @@
     <ClCompile Include="igvMaterial.cpp" />
     <ClCompile Include="igvPunto3D.cpp" />
     <ClCompile Include="igvTextura.cpp" />
+    <ClCompile Include="Nodo.cpp" />
     <ClCompile Include="Pared.cpp" />
     <ClCompile Include="prFinal.cpp" />
   </ItemGroup>

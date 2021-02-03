@@ -35,7 +35,7 @@ void igvInterfaz::crear_mundo(void) {
 	//parámetros de la perspectiva
 	interfaz.camara.angulo = 120.0;
 	interfaz.camara.raspecto = (double)interfaz.ancho_ventana/interfaz.alto_ventana;
-	interfaz.luz = igvFuenteLuz(GL_LIGHT0, p0, { 0.1,0.1,0.1,1.0 }, { 1.0, 1.0, 1.0, 1.0 }, { 1.0, 1.0, 1.0, 1.0 }, 1.0, 0, 0, r, 65, 2);
+	interfaz.luz = igvFuenteLuz(GL_LIGHT0, p0, { 0.1,0.1,0.1,1.0 }, { 1.0, 1.0, 1.0, 1.0 }, { 1.0, 1.0, 1.0, 1.0 }, 1.0, 0, 0, r, 55, 2);
 	interfaz.luz.aplicar();
 }
 
@@ -76,6 +76,7 @@ void igvInterfaz::inicializa_callbacks() {
 	glutTimerFunc(1000/60, set_glutTimerFunc, 0);
 	glutMouseFunc(set_glutMouseFunc);
 	glutPassiveMotionFunc(set_glutMotionFunc);
+	glutIdleFunc(set_glutIdleFunc);
 	glutSetCursor(GLUT_CURSOR_NONE);
 }
 
@@ -275,5 +276,89 @@ void igvInterfaz::set_glutTimerFunc(int value)
 }
 
 
+//===========================================================================================
 
 
+void igvInterfaz::set_glutIdleFunc() {
+	///// Apartado D: incluir el código para animar el modelo de la manera más realista posible
+	if (interfaz.escena.isPuertaAbierta()) {
+		int pasosFase1_4 = 0 + (30 / interfaz.velocidadAnim);
+		int pasosFase2 = pasosFase1_4 + (30 / interfaz.velocidadAnim);
+		int pasosFase3 = pasosFase2 + (10 / interfaz.velocidadAnim);
+		int pasosFase4 = pasosFase3 + (10 / interfaz.velocidadAnim);
+		int pasosFase5 = pasosFase4 + (10 / interfaz.velocidadAnim);
+		int pasosFase6 = pasosFase5 + (10 / interfaz.velocidadAnim);
+		int pasosFase7 = pasosFase6 + (30 / interfaz.velocidadAnim);
+		//Loop Saludo
+		if (interfaz.paso < pasosFase1_4) {
+			interfaz.escena.setSeleccionado("Tronco");
+			interfaz.escena.modificarAnguloSeleccionado({ 0, interfaz.velocidadAnim, 0 });
+		}
+		else if (interfaz.paso < pasosFase2) {
+			interfaz.escena.setSeleccionado("HombroDer");
+			interfaz.escena.modificarAnguloSeleccionado({ 0, 0, -interfaz.velocidadAnim * 5.5f });
+			interfaz.escena.setSeleccionado("HombroIzq");
+			interfaz.escena.modificarAnguloSeleccionado({ 0, 0, interfaz.velocidadAnim * 5.5f });
+		}
+		else if (interfaz.paso < pasosFase3) {
+			interfaz.escena.setSeleccionado("HombroDer");
+			interfaz.escena.modificarAnguloSeleccionado({ 0, 0, interfaz.velocidadAnim * 4 });
+			interfaz.escena.setSeleccionado("HombroIzq");
+			interfaz.escena.modificarAnguloSeleccionado({ 0, 0, -interfaz.velocidadAnim * 4 });
+			interfaz.escena.setSeleccionado("Tronco");
+			interfaz.escena.modificarAnguloSeleccionado({ 0, 0, -interfaz.velocidadAnim / 2 });
+			interfaz.escena.setSeleccionado("Cabeza");
+			interfaz.escena.modificarAnguloSeleccionado({ 0, 0, interfaz.velocidadAnim });
+		}
+		else if (interfaz.paso < pasosFase4) {
+			interfaz.escena.setSeleccionado("HombroDer");
+			interfaz.escena.modificarAnguloSeleccionado({ 0, 0, -interfaz.velocidadAnim * 4 });
+			interfaz.escena.setSeleccionado("HombroIzq");
+			interfaz.escena.modificarAnguloSeleccionado({ 0, 0, +interfaz.velocidadAnim * 4 });
+			interfaz.escena.setSeleccionado("Tronco");
+			interfaz.escena.modificarAnguloSeleccionado({ 0, 0, interfaz.velocidadAnim });
+			interfaz.escena.setSeleccionado("Cabeza");
+			interfaz.escena.modificarAnguloSeleccionado({ 0, 0, -interfaz.velocidadAnim * 2 });
+		}
+		else if (interfaz.paso < pasosFase5) {
+			interfaz.escena.setSeleccionado("HombroDer");
+			interfaz.escena.modificarAnguloSeleccionado({ 0, 0, interfaz.velocidadAnim * 4 });
+			interfaz.escena.setSeleccionado("HombroIzq");
+			interfaz.escena.modificarAnguloSeleccionado({ 0, 0, -interfaz.velocidadAnim * 4 });
+			interfaz.escena.setSeleccionado("Tronco");
+			interfaz.escena.modificarAnguloSeleccionado({ 0, 0, -interfaz.velocidadAnim });
+			interfaz.escena.setSeleccionado("Cabeza");
+			interfaz.escena.modificarAnguloSeleccionado({ 0, 0, interfaz.velocidadAnim * 2 });
+		}
+		else if (interfaz.paso < pasosFase6) {
+			interfaz.escena.setSeleccionado("HombroDer");
+			interfaz.escena.modificarAnguloSeleccionado({ 0, 0, -interfaz.velocidadAnim * 4 });
+			interfaz.escena.setSeleccionado("HombroIzq");
+			interfaz.escena.modificarAnguloSeleccionado({ 0, 0, +interfaz.velocidadAnim * 4 });
+			interfaz.escena.setSeleccionado("Tronco");
+			interfaz.escena.modificarAnguloSeleccionado({ 0, 0, interfaz.velocidadAnim });
+			interfaz.escena.setSeleccionado("Cabeza");
+			interfaz.escena.modificarAnguloSeleccionado({ 0, 0, -interfaz.velocidadAnim * 2 });
+		}
+		else if (interfaz.paso < pasosFase7) {
+			interfaz.escena.setSeleccionado("HombroDer");
+			interfaz.escena.modificarAnguloSeleccionado({ 0, 0, +interfaz.velocidadAnim * 5.5f });
+			interfaz.escena.setSeleccionado("HombroIzq");
+			interfaz.escena.modificarAnguloSeleccionado({ 0, 0, -interfaz.velocidadAnim * 5.5f });
+			interfaz.escena.setSeleccionado("Tronco");
+			interfaz.escena.modificarAnguloSeleccionado({ 0, -interfaz.velocidadAnim, -interfaz.velocidadAnim / 6 });
+			interfaz.escena.setSeleccionado("Cabeza");
+			interfaz.escena.modificarAnguloSeleccionado({ 0, 0, interfaz.velocidadAnim / 3 });
+		}
+		else
+			interfaz.paso = 0 - 1;
+		interfaz.paso++;
+	}
+	else if (interfaz.paso > 0) {
+		interfaz.paso = -1;
+		interfaz.bucleCaminar = interfaz.bucleCaminarBackUp;
+		interfaz.escena.resetearModelo();
+		interfaz.escena.setSeleccionado("Cintura");
+	}
+	glutPostRedisplay(); // renueva el contenido de la ventana de vision
+}

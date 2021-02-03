@@ -49,6 +49,11 @@ protected:
 	bool primero = true;
 	bool boton_retenido;
 
+	float velocidadAnim = 0.5;
+	int paso = -1;
+	int bucleCaminar = 2;
+	int bucleCaminarBackUp;
+
 public:
 	// Constructores por defecto y destructor
 	igvInterfaz();
@@ -63,6 +68,7 @@ public:
 	static void set_glutMouseFunc(GLint boton, GLint estado, GLint x, GLint y);// control de pulsacion del raton
 	static void set_glutMotionFunc(GLint x, GLint y);
 	static void set_glutTimerFunc(int value);
+	static void set_glutIdleFunc(); // método para animar el modelo del golem
 
 	// Metodos
 	// crea el mundo que se visualiza en la ventana
